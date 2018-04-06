@@ -1,3 +1,3 @@
 export const PROVIDER = process.env.PROVIDER;
- 
-export const JURISDICTION_ADDRESS = '0xf085ccb0e940c518e8e69ef0d3685e929412f5dc'
+
+export const JURISDICTION_ADDRESS = '0x27dccc3bf3b532116ebdc2cd6f08740685390a4a'
