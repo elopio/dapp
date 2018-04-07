@@ -23,7 +23,7 @@ const ValidatorsActions = {
   },
 
   add(validator) {
-    return async function(dispatch) {
+    return function(dispatch) {
       dispatch({ type: ActionTypes.ADD_VALIDATOR, validator })
     }
   },
