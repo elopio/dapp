@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
 import Store from './store'
+import Alert from './Alert'
 import NetworkActions from "./actions/network";
 import Modal from "./Modal.react"
 import Transparency from './Transparency';
@@ -19,7 +20,10 @@ class App extends Component {
     return (network.connected) ?
       (fetching ?
        <Modal open={fetching} progressBar message={fetching}/> :
-       <Transparency/>
+       <div>
+         <Alert/>
+         <Transparency/>
+       </div>
       ) :
       <div>
         <Modal dark open={!network.connected} message={'Please access using MIST or Metamask'}/>

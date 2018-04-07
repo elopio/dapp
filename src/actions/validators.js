@@ -1,4 +1,5 @@
 import { Jurisdiction } from '../contracts'
+import AlertActions from './alerts'
 import FetchingActions from './fetching'
 import * as ActionTypes from '../actiontypes'
 import { JURISDICTION_ADDRESS } from '../constants'
@@ -15,7 +16,7 @@ const ValidatorsActions = {
       // --elopio - 20180704
       const events = jurisdiction.ValidatorAdded({}, { fromBlock: 0, toBlock: 'latest' });
       events.watch(function(error, result) {
-        if(error) throw error
+        if(error) AlertActions.showError(error)
         else dispatch(ValidatorsActions.add(result.args.validator))
       })
     }
