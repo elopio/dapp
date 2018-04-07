@@ -15,7 +15,12 @@ class ValidatorsList extends Component {
     return (
       <div>
         <p>Validators:</p>
-        { validators.length === 0 ? <em>No validators</em> : <ul>{this._buildValidatorsList(validators)}</ul>}
+        { validators.length === 0 ? (
+            <em>No validators</em>
+          ) : (
+            <ul>{this._buildValidatorsList(validators)}</ul>
+          )
+        }
       </div>
     )
   }
