@@ -23,9 +23,7 @@ const ValidatorsActions = {
   },
 
   add(validator) {
-    return function(dispatch) {
-      dispatch({ type: ActionTypes.ADD_VALIDATOR, validator })
-    }
+    return { type: ActionTypes.ADD_VALIDATOR, validator }
   },
 }
 
