@@ -1,0 +1,3 @@
+[submodule "tpl-contracts"]
+	path = tpl-contracts
+	url = http://github.com/tpl-protocol/tpl-contracts
