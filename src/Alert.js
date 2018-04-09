@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import AlertActions from './actions/alerts'
 
 class Alert extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.alert !== this.props.alert) setTimeout(() => Store.dispatch(AlertActions.reset()), 5000)
-  }
 
   render() {
     const alert = this.props.alert;
