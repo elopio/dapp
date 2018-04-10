@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import Store from './store'
 
-//import NetworkActions from "./actions/network";
 import AccountActions from "./actions/accounts";
 import ValidationActions from "./actions/validation";
 
