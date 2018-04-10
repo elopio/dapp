@@ -14,9 +14,9 @@ class ValidateMe extends Component {
   }
 
   componentWillMount() {
-    Store.dispatch(AccountActions.findAccount());
-    Store.dispatch(ValidationActions.checkValidated("0x1f3a8427250a6c580853dae603d02eeb93b55ed0"));
-    //Store.dispatch(ValidationActions.checkValidated(this.props.address));
+      Store.dispatch(AccountActions.findAccount()).then(() => {
+        Store.dispatch(ValidationActions.checkValidated(this.props.address))
+      });
   }
 
   render() {
