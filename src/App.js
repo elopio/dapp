@@ -6,6 +6,7 @@ import Alert from './Alert'
 import NetworkActions from "./actions/network";
 import Modal from "./Modal.react"
 import Transparency from './Transparency';
+import ValidateMe from './ValidateMe';
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
        <div>
          <Alert/>
          <Transparency/>
+         <ValidateMe/>
        </div>
       ) :
       <div>

@@ -1,5 +1,6 @@
-import { Jurisdiction } from '../contracts'
 import * as ActionTypes from '../actiontypes'
+
+import { Jurisdiction } from '../contracts'
 import { JURISDICTION_ADDRESS } from '../constants'
 
 const JurisdictionActions = {
