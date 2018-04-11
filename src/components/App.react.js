@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import './App.css';
-import Store from './store'
-import Alert from './Alert'
-import NetworkActions from "./actions/network";
+import Store from '../store'
+import Alert from './Alert.react'
+import NetworkActions from "../actions/network";
 import Modal from "./Modal.react"
-import Transparency from './Transparency';
-import ValidateMe from './ValidateMe';
+import Jurisdiction from './Jurisdiction.react';
+import ValidateMe from './ValidateMe.react';
 
 class App extends Component {
 
@@ -23,7 +22,7 @@ class App extends Component {
        <Modal open={fetching} progressBar message={fetching}/> :
        <div>
          <Alert/>
-         <Transparency/>
+         <Jurisdiction/>
          <ValidateMe/>
        </div>
       ) :

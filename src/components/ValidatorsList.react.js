@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Store from './store'
+import Store from '../store'
 
-import ValidatorsActions from './actions/validators'
+import ValidatorsActions from '../actions/validators'
 
 class ValidatorsList extends Component {
   componentWillMount() {

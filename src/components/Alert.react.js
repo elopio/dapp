@@ -1,7 +1,7 @@
 import React from 'react'
-import Store from './store'
+import Store from '../store'
 import { connect } from 'react-redux'
-import AlertActions from './actions/alerts'
+import AlertActions from '../actions/alerts'
 
 class Alert extends React.Component {
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import Store from './store'
+import Store from '../store'
 
-import AccountActions from "./actions/accounts";
-import ValidationActions from "./actions/validation";
+import AccountActions from "../actions/accounts";
+import ValidationActions from "../actions/validation";
 
 class ValidateMe extends Component {
 

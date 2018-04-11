@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Store from './store'
+import Store from '../store'
 
-import JurisdictionActions from './actions/jurisdiction'
-import ValidatorsList from './ValidatorsList'
+import JurisdictionActions from '../actions/jurisdiction'
+import ValidatorsList from './ValidatorsList.react'
 
 
 const RootDAO = connect(({jurisdiction}) => ({jurisdiction}))((props) => {
@@ -19,7 +19,7 @@ class Transparency extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Transparency</h1>
+        <h1>Jurisdiction</h1>
         <RootDAO />
         <ValidatorsList />
       </div>
