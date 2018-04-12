@@ -39,4 +39,5 @@ contract SampleToken is MintableToken {
     require(jurisdiction.hasAttribute(_to, 'VALID'));
     return super.transferFrom(_from, _to, _value);
   }
+
 }
