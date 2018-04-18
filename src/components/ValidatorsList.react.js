@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Store from '../store'
-
 import ValidatorsActions from '../actions/validators'
 
 class ValidatorsList extends Component {
   componentWillMount() {
-    Store.dispatch(ValidatorsActions.findAll())
+    this.props.findAll();
   }
 
   render() {
@@ -40,4 +38,13 @@ function mapStateToProps({ validators }) {
     return { validators }
 }
 
-export default connect(mapStateToProps)(ValidatorsList)
+function mapDispatchToProps(dispatch) {
+  return({
+    findAll: () => dispatch(ValidatorsActions.findAll())
+  });
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ValidatorsList);

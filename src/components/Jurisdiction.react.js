@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Store from '../store'
-
 import JurisdictionActions from '../actions/jurisdiction'
 import ValidatorsList from './ValidatorsList.react'
 
@@ -13,7 +11,7 @@ const RootDAO = connect(({jurisdiction}) => ({jurisdiction}))((props) => {
 
 class Transparency extends Component {
   componentWillMount() {
-    Store.dispatch(JurisdictionActions.find())
+    this.props.find()
   }
 
   render() {
@@ -27,5 +25,10 @@ class Transparency extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return ({
+    find: () => dispatch(JurisdictionActions.find())
+  });
+}
 
-export default Transparency
+export default connect(() => {}, mapDispatchToProps)(Transparency);
