@@ -6,6 +6,8 @@ const AccountsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_ACCOUNT:
       return {...state, address: action.address };
+    case ActionTypes.CHANGE_ACCOUNT:
+      return {...state, address: action.address };
     default:
       return state
   }
