@@ -1,3 +1,4 @@
+const DummyValidator = artifacts.require('DummyValidator');
 const Jurisdiction = artifacts.require('Jurisdiction');
 const SampleToken = artifacts.require('SampleToken');
 const SampleCrowdsale = artifacts.require('SampleCrowdsale');
@@ -15,9 +16,11 @@ contract('SampleCrowdsale', function ([owner, wallet, investor]) {
 
     beforeEach(async function () {
         this.jurisdiction = await Jurisdiction.new();
-        await this.jurisdiction.addValidator(owner);
 
-        this.token = await SampleToken.new(this.jurisdiction.address);
+        this.validator = await DummyValidator.new(this.jurisdiction.address);
+        await this.jurisdiction.addValidator(this.validator.address);
+
+        this.token = await SampleToken.new(this.validator.address);
         this.crowdsale = await SampleCrowdsale.new(
             RATE, wallet, this.token.address);
         await this.token.transferOwnership(this.crowdsale.address);
@@ -41,7 +44,7 @@ contract('SampleCrowdsale', function ([owner, wallet, investor]) {
     });
 
     it('should accept payment validated', async function () {
-        await this.jurisdiction.addAttribute(investor, 'VALID', 1);
+        await this.validator.validate({from: investor});
 
         const investmentAmount = new BigNumber(web3.toWei(1, 'ether'));
         await this.crowdsale.buyTokens(

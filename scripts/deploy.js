@@ -26,7 +26,7 @@ async function main() {
   await jurisdiction.addValidator(validator.address);
 
   const SampleToken = getContract('SampleToken', 2000000);
-  const sampleToken = await SampleToken.new(jurisdiction.address);
+  const sampleToken = await SampleToken.new(validator.address);
   console.log("SampleToken\t" + sampleToken.address);
 
   const SampleCrowdsale = getContract('SampleCrowdsale', 2000000);

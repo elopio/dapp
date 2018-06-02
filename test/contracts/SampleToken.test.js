@@ -1,3 +1,4 @@
+const DummyValidator = artifacts.require('DummyValidator');
 const Jurisdiction = artifacts.require('Jurisdiction');
 const SampleToken = artifacts.require('SampleToken');
 
@@ -12,9 +13,11 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
 
   beforeEach(async function () {
     this.jurisdiction = await Jurisdiction.new();
-    await this.jurisdiction.addValidator(owner);
 
-    this.token = await SampleToken.new(this.jurisdiction.address);
+    this.validator = await DummyValidator.new(this.jurisdiction.address);
+    await this.jurisdiction.addValidator(this.validator.address);
+
+    this.token = await SampleToken.new(this.validator.address);
     await this.token.transferOwnership(owner);
   });
 
@@ -31,7 +34,7 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
   });
 
   it('should accept validated minting', async function () {
-    await this.jurisdiction.addAttribute(investor1, 'VALID', 1);
+    await this.validator.validate({from: investor1});
 
     const investmentAmount = new BigNumber(web3.toWei(1, 'ether'));
     await this.token.mint(
@@ -45,7 +48,7 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
   });
 
   it('should not accept not validated transfer', async function () {
-    await this.jurisdiction.addAttribute(investor1, 'VALID', 1);
+    await this.validator.validate({from: investor1});
     const investmentAmount = new BigNumber(web3.toWei(1, 'ether'));
     await this.token.mint(
       investor1, investmentAmount,
@@ -63,14 +66,14 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
   });
 
   it('should accept validated transfer', async function () {
-    await this.jurisdiction.addAttribute(investor1, 'VALID', 1);
+    await this.validator.validate({from: investor1});
     const investmentAmount = new BigNumber(web3.toWei(1, 'ether'));
     await this.token.mint(
       investor1, investmentAmount,
       { from: owner }
     ).should.be.fulfilled;
 
-    await this.jurisdiction.addAttribute(investor2, 'VALID', 1);
+    await this.validator.validate({from: investor2});
     await this.token.transfer(
       investor2, investmentAmount,
       { from: investor1 }
@@ -82,7 +85,7 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
   });
 
   it('should not accept not validated transferFrom', async function () {
-    await this.jurisdiction.addAttribute(investor1, 'VALID', 1);
+    await this.validator.validate({from: investor1});
     const investmentAmount = new BigNumber(web3.toWei(1, 'ether'));
     await this.token.mint(
       investor1, investmentAmount,
@@ -104,7 +107,7 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
   });
 
   it('should accept validated transferFrom', async function () {
-    await this.jurisdiction.addAttribute(investor1, 'VALID', 1);
+    await this.validator.validate({from: investor1});
     const investmentAmount = new BigNumber(web3.toWei(1, 'ether'));
     await this.token.mint(
       investor1, investmentAmount,
@@ -115,7 +118,7 @@ contract('SampleToken', function ([owner, investor1, investor2]) {
       { from: investor1 }
     ).should.be.fulfilled;
 
-    await this.jurisdiction.addAttribute(investor2, 'VALID', 1);
+    await this.validator.validate({from: investor2});
     await this.token.transferFrom(
       investor1, investor2, investmentAmount,
       { from: owner }
